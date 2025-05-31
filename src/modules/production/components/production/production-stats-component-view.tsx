@@ -211,7 +211,7 @@ const ProductionView = () => {
           selectedProduction
             ? {
                 ...selectedProduction,
-                observation: selectedProduction.observation || '', // Aseguramos que observation sea un string
+                observation: selectedProduction.observation || '', 
               }
             : null
         }

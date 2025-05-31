@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useUpdateProduction } from '../../hook/useProductions';
 import { useFetchPlants } from '../../hook/usePlants';
 import { X } from 'lucide-react';
+import { useFetchProducts } from '@/modules/production/hook/useProducts';
 
 interface ModalEditProductionProps {
   isOpen: boolean;
@@ -22,6 +23,7 @@ const ModalEditProduction: React.FC<ModalEditProductionProps> = ({ isOpen, onClo
   const [descripcion, setDescripcion] = useState('');
   const [planta, setPlanta] = useState('');
   const [fecha, setFecha] = useState('');
+  const { data: productos = [], isLoading: loadingProductos } = useFetchProducts();
 
   const updateProductionMutation = useUpdateProduction();
   const { data: plantas, isLoading: isLoadingPlantas, error: errorPlantas } = useFetchPlants();
@@ -63,6 +65,11 @@ const ModalEditProduction: React.FC<ModalEditProductionProps> = ({ isOpen, onClo
     }
   };
 
+  const getProductName = (productId: string) => {
+    const producto = productos.find((p) => p.id === productId);
+    return producto ? producto.name : 'Producto desconocido';
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -80,14 +87,24 @@ const ModalEditProduction: React.FC<ModalEditProductionProps> = ({ isOpen, onClo
         <form onSubmit={handleSubmit} className="p-4 space-y-4">
           <div>
             <label className="block text-gray-700 mb-2">Producto*</label>
-            <input
-              type="text"
-              name="produccion"
-              value={produccion}
-              onChange={(e) => setProduccion(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500 focus:border-transparent"
-              required
-            />
+            {loadingProductos ? (
+              <div className="animate-pulse bg-gray-200 h-10 rounded-lg"></div>
+            ) : (
+              <select
+                name="produccion"
+                value={produccion}
+                onChange={(e) => setProduccion(e.target.value)}
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                required
+              >
+                <option value="">Seleccione un producto</option>
+                {productos.map((producto) => (
+                  <option key={producto.id} value={producto.id}>
+                    {producto.name}
+                  </option>
+                ))}
+              </select>
+            )}
           </div>
           <div>
             <label className="block text-gray-700 mb-2">Cantidad Producida*</label>
