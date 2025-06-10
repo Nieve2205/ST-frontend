@@ -65,7 +65,7 @@ const ModalEditResource: React.FC<ModalEditResourceProps> = ({
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-md relative">
-        <div className="bg-red-800 text-white p-5 rounded-t-2xl flex items-center justify-center relative">
+        <div className="bg-orange-500 text-white p-5 rounded-t-2xl flex items-center justify-center relative">
           <h2 className="text-lg font-semibold text-center">Editar Recurso</h2>
           <button
             onClick={onClose}
@@ -84,7 +84,7 @@ const ModalEditResource: React.FC<ModalEditResourceProps> = ({
               type="text"
               value={nombre}
               onChange={(e) => setNombre(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-600 focus:outline-none"
               placeholder="Nombre del recurso"
               autoFocus
             />
@@ -125,7 +125,7 @@ const ModalEditResource: React.FC<ModalEditResourceProps> = ({
                 step={0.01}
                 value={precioUnitario}
                 onChange={(e) => setPrecioUnitario(Number(e.target.value))}
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-600 focus:outline-none"
                 placeholder="Precio por unidad"
               />
             </div>
@@ -137,7 +137,7 @@ const ModalEditResource: React.FC<ModalEditResourceProps> = ({
               type="text"
               value={proveedor}
               onChange={(e) => setProveedor(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-600 focus:outline-none"
               placeholder="Nombre del proveedor"
             />
           </div>
@@ -153,7 +153,7 @@ const ModalEditResource: React.FC<ModalEditResourceProps> = ({
               type="date"
               value={fechaCompra}
               onChange={(e) => setFechaCompra(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-600 focus:outline-none"
             />
           </div>
 
@@ -167,7 +167,7 @@ const ModalEditResource: React.FC<ModalEditResourceProps> = ({
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-red-800 text-white rounded-lg hover:bg-red-700 transition flex items-center gap-2"
+              className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition flex items-center gap-2"
             >
               <Save size={18} /> Guardar
             </button>
